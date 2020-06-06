@@ -11,7 +11,7 @@ Table of Contents
 -----------------
 
 -   [Project Background](#projectbackground)
--   [Getting started](#Getting started)
+-   [Getting started](#Gettingstarted)
 -   [Install & Setup](#installsetup)
 -   [Usage](#usage)
 -   [Running the tests](#tests)
@@ -43,8 +43,8 @@ To  run the HuffmanCompressor,
 ```python
 from modules.HuffmanAlgorithm import HuffmanCompressor
 huffman_instance = HuffmanCompressor(path=os.environ.get('SAMPLE_TEXT')) or HuffmanCompressor(path=path_string)
-h=huffman_instance.compress() return the compress file path
-huffman_instance.decompress(input_path=h)  returns the decompress file path
+h=huffman_instance.compress() #return the compress file path
+huffman_instance.decompress(input_path=h)  #returns the decompress file path
 ```   
 
 
