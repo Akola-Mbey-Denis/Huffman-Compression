@@ -1,5 +1,5 @@
 
-Project Title
+Huffman Compression Algorithmn Python Implementation
 =============
 
 <!-- ![banner]() -->
