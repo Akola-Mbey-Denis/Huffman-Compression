@@ -9,22 +9,30 @@ class HuffmanCompressor:
         self.codes={}
         self.reverse_mapping={}
 
-    def frequency_count(self,text):
+    def frequency_count(self):
         ''''
-         Gets a block of text as input
-         and compute the frequency of each unique character in the text
+         computes the frequency of each unique character in the text
          returns a dictionary containing the unique characters and their
          frequency counts.
 
 
         '''
-        frequency={}
+        file=open(file=self.path,mode="r") 
+        
+        if file:
+            text=file.read()
+             
+            frequency={}
 
-        for ch in text:
-            if not ch in frequency:
-                frequency[ch]=0
+            for ch in text:
+                if not ch in frequency:
+                    frequency[ch]=0
                 frequency[ch]+=1 
-        return frequency  
+            return frequency
+        else:
+            pass
+        file.close()
+
 
     def  make_heap(self,frequency):
         '''
@@ -75,12 +83,25 @@ class HuffmanCompressor:
 
 
 
-    def generate_encoded_text(self,text):
+    def generate_encoded_text(self):
         encoded_text=""
+        file = open(file=self.path,mode="r") 
+        
+        if file:
+            try:
+                text=file.read()        
+                
 
-        for ch in text:
-            encoded_text+=self.codes[ch]
-        return encoded_text
+                for ch in text:
+                    encoded_text+=self.codes[ch]
+                     
+                return encoded_text
+            except EnvironmentError as error:
+                pass  
+        else:
+            pass 
+        file.close()   
+           
 
     def pad_encoded_text(self, encoded_text):
         extra_padding = 8 - len(encoded_text) % 8
@@ -113,12 +134,12 @@ class HuffmanCompressor:
             text = file.read()
             text = text.rstrip()
 
-            frequency = self.frequency_count (text)
+            frequency = self.frequency_count ()
             self.make_heap(frequency)
             self.heap_merger()
             self.make_codes()
 
-            encoded_text = self.generate_encoded_text (text)
+            encoded_text = self.generate_encoded_text()
             padded_encoded_text = self.pad_encoded_text(encoded_text)
 
             b = self.get_byte_array(padded_encoded_text)
